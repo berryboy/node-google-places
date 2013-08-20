@@ -12,6 +12,18 @@ places.search({keyword: 'Vermonster'}, function(err, response) {
   });
 });
 
+
+places.textsearch({query: 'Tokyo Dome'}, function(err, response) {
+  if(err) { console.log(err); return; }
+  console.log("textsearch: ", response.results);
+
+  places.details({reference: response.results[0].reference}, function(err, response) {
+    if(err) { console.log(err); return; }
+    console.log("textsearch details: ", response.result.website);
+  });
+});
+
+
 places.autocomplete({input: 'Verm', types: "(cities)"}, function(err, response) {
   console.log("autocomplete: ", response.predictions);
 
